@@ -1,6 +1,5 @@
 package com.vijay.number;
 
-import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -42,7 +41,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/", params = "english", method = RequestMethod.POST)
-	public String readEnglish(Model model, @Valid InputField inputField, BindingResult result) {
+	public String readEnglish(Model model, @ModelAttribute InputField inputField, BindingResult result) {
 		
 	    if (result.hasErrors()) {
 	    	logger.info("Binding error: "+result.toString());
@@ -72,7 +71,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/", params = "roman", method = RequestMethod.POST)
-	public String readRoman(Model model, @Valid InputField inputField, BindingResult result) {
+	public String readRoman(Model model, @ModelAttribute InputField inputField, BindingResult result) {
 		
 	    if (result.hasErrors()) {
 	    	logger.info("Binding error: "+result.toString());
