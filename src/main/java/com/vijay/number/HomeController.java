@@ -19,13 +19,13 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	
-	private final ReadNumberService readNumberService;
-	
 	@Autowired
+	protected  ReadNumberService readNumberService;
+	
+	/*@Autowired
 	public HomeController(ReadNumberService readNumberService) {
 		this.readNumberService = readNumberService;
-	}
+	}*/
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
