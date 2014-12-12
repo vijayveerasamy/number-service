@@ -1,5 +1,7 @@
 package com.vijay.number;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -41,10 +45,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/", params = "english", method = RequestMethod.POST)
-	public String readEnglish(Model model, @ModelAttribute InputField inputField, BindingResult result) {
+	public String readEnglish(Model model, @Valid @ModelAttribute("inputField") InputField inputField, BindingResult result) {
 		
 	    if (result.hasErrors()) {
-	    	logger.info("Binding error: "+result.toString());
+	    	logger.info("Binding error: "+result.getFieldErrors().get(0));
 			inputField.setNumberValue(0);
 			model.addAttribute("errorMsg", "Invalid input, please enter number 1 and 3999.");
 	        return "home";
@@ -71,11 +75,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/", params = "roman", method = RequestMethod.POST)
-	public String readRoman(Model model, @ModelAttribute InputField inputField, BindingResult result) {
+	public String readRoman(Model model, @Valid @ModelAttribute("inputField") InputField inputField, BindingResult result) {
 		
 	    if (result.hasErrors()) {
-	    	logger.info("Binding error: "+result.toString());
+	    	logger.info("Binding error: "+result.getFieldErrors().get(0));
 			inputField.setNumberValue(0);
+			
 			model.addAttribute("errorMsg", "Invalid input, please enter number 1 and 3999.");
 	        return "home";
 	    }

@@ -1,6 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="number" tagdir="/WEB-INF/tags" %>
+
 <html>
 <head>
 	<title>Home</title>
@@ -12,7 +13,8 @@
 
 
 <form:form modelAttribute="inputField" method="POST"  id="number-form">
-<p>Enter number: <form:input path="numberValue"/>
+<p>
+<number:inputField label="Enter number" name="numberValue"/>
 </p>
 <p><input type="submit" name="english" value="Print number as English word"/></p>
 <p><input type="submit" name="roman" value="Print number as Roman numeral"/></p>
